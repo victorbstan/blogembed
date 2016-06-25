@@ -1,0 +1,27 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title">Archive</h3>
+  </div>
+  <ul class="list-unstyled">
+    <% posts.chunk { |post| post.created_at.strftime("%Y") }.each do |year, posts| %>
+      <li>
+        <%= year %>
+        <ul style="list-style:none;padding-left:10px;">
+          <% posts.chunk { |post| post.created_at.strftime("%B") }.each do |month, posts| %>
+            <li>
+              <%= month %>
+              <ul style="list-style:none;padding-left:10px;">
+                <% posts.each do |post| %>
+                  <li>
+                    <%= link_to_unless_current post.title, path_to_post_for_controller(controller_name, user.id, @blog.id, post.to_param) %>
+                    <small class="text-muted"><em><%= post.created_at.strftime('%b %e') %></em></small>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</div>

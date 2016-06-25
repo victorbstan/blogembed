@@ -1,0 +1,8 @@
+<% shorten ||= nil %><%# stupid rails, undefined local variable, mumble mumble... %>
+
+<h2 class="blog-title">
+  <%= link_to_unless_current post.title, user_blog_embed_url(params[:user_id], @blog.id, post.to_param) %>
+</h2>
+
+<%= render partial: 'common/post_body', locals: { post: post, shorten: shorten } %>
+

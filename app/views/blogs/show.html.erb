@@ -1,0 +1,22 @@
+<% if @blog %>
+  <h3 class="page-header">
+    <%= @blog.name %>
+    <% if is_allowed? params[:user_id] %>
+      <span>
+        <%= render partial: 'common/back_button', locals: { path: user_blogs_path(current_user) } %>
+        <%= render partial: 'common/edit_button', locals: { path: edit_user_blog_path(current_user, @blog) } %>
+      </span>
+    <% end %>
+  </h3>
+
+  <% if @post %>
+    <% @posts.each do |post| %>
+      <p>LIST POSTS HERE</p>
+    <% end %>
+  <% else %>
+    <p class="alert">This blog has no posts...</p>
+  <% end %>
+<% else %>
+  <h3 class="page-header">Sorry...</h3>
+  <p class="alert">This blog is not available.</p>
+<% end %>

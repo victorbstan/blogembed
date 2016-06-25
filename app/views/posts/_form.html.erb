@@ -1,0 +1,27 @@
+<%= form_for([current_user, @blog, @post]) do |f| %>
+  <%= render partial: 'common/alert', locals: { resource: @post } %>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.text_field :title, placeholder: "Title", class: "form-control" %>
+      </div>
+      <div class="col-lg-6">
+        <%= f.text_field :author, placeholder: "Author", class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_area :body, placeholder: "Body", class: "form-control", rows: "20" %>
+  </div>
+
+  <div class="checkbox">
+    <%= f.label :publish %>
+    <%= f.check_box :publish %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit nil, class: "btn btn-primary" %>
+  </div>
+<% end %>

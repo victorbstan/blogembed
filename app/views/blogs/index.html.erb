@@ -1,0 +1,56 @@
+<h3 class="page-header">
+  Blogs
+  <span>
+    <%= link_to raw("<i class='icon-sitemap'></i> New Blog"), new_user_blog_path(current_user), class: 'btn btn-success btn-small' %>
+  </span>
+</h3>
+
+<div class="row">
+  <div class="col-lg-7">
+    <% @blogs.each do |blog| %>
+      <div class="panel <%= primary? blog %>">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= blog.name %>
+            <span class="pull-right">
+              <span class="label label-info"><%= blog.posts.size %> Posts</span>
+              <span class="label label-info"><%= blog.enable? ? "Enabled" : "Disabled" %></span>
+            </span>
+          </h3>
+        </div>
+
+        <%= blog.description.present? ? blog.description : raw("<i class='text-muted'>No description</i>") %>
+
+        <div class="panel-footer">
+          <%= link_to raw("<i class='icon-file'></i> Post"), new_user_blog_post_url(current_user, blog), class: "btn btn-success btn-small" %>
+          <%= link_to raw("<i class='icon-folder-open'></i> Manage"), user_blog_posts_url(current_user, blog), class: "btn btn-primary btn-small" %>
+          <%= link_to raw("<i class='icon-gears'></i>"), edit_user_blog_setting_path(current_user, blog, blog.setting), class: "btn btn-default btn-small" %>
+
+          <div class="pull-right">
+            <%= link_to raw("<i class='icon-pencil'></i>"), edit_user_blog_path(current_user, blog), class: "btn btn-default btn-small" %>
+            <%= link_to raw("<i class='icon-remove'></i>"), user_blog_path(current_user, blog), class: "btn btn-danger btn-small", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-lg-5">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="icon-question-sign"></i> Info</h3>
+      </div>
+      <p>
+        You can have multiple blogs, and embed each one wherever you wish.
+      </p>
+      <h4>Customizing</h4>
+      <p>
+        Embedded blogs do not show editing/administration buttons; they can be custom styled, check the <i class="icon-gears"></i> Settings section.
+      </p>
+      <h4>Embedding</h4>
+      <p>
+        Look for the <i class="icon-code"></i> icon when managing <i class='icon-folder-open'></i> a blog.
+      </p>
+    </div>
+  </div>
+</div>
+

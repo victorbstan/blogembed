@@ -1,0 +1,42 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.custom-bg {
+  background-color: #444;
+  background-image: url('blurred_lines.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+.light-text {
+  color:white;
+}
+
+.glow {
+  text-shadow: 0 0 10px;
+}
+
+.glow-box {
+  box-shadow: 0 0 10px;
+  border:0;
+}
+
+.glow-box-red {
+  box-shadow: 0 0 10px #c9302c;
+  border:0;
+}
+
+.signup-main-button {
+  height:200px;
+  width:200px;
+  padding-top:85px;
+}
+
+.large-padding {
+  padding-left:50px;
+  padding-right:50px;
+}

@@ -1,0 +1,60 @@
+<style type="text/css" media="screen">
+  #editor {
+    margin: 0;
+    display:inline-block;
+    height:400px;
+    width:100%;
+  }
+</style>
+
+<%= form_for([current_user, @blog, resource]) do |f| %>
+  <%= render partial: 'common/alert', locals: { resource: resource } %>
+
+  <div class="form-group">
+    <%= f.label :disqus_shortname %>
+    <%= f.text_field :disqus_shortname, class: "form-control" %>
+  </div>
+
+  <hr>
+
+  <div class="form-group hide">
+    <%= f.label :custom_css %>
+    <%= f.text_area :custom_css, class: "form-control ", rows: 10 %>
+  </div>
+
+<%
+default = <<-txt
+/*
+  Add your custom stylesheet here,
+  you can overwrite any default style
+  on your blog...
+  Just start typing valid CSS.
+*/
+
+txt
+%>
+<div class="form-group">
+<%= f.label :custom_css %>
+<pre id="editor">
+<%= f.object.custom_css.present? ? raw(f.object.custom_css) : default %>
+</pre>
+</div>
+
+  <div class="form-group">
+    <%= f.submit nil, class: 'btn btn-default' %>
+  </div>
+<% end %>
+
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/github");
+  editor.getSession().setMode("ace/mode/css");
+
+  var $editor = $("#editor");
+  var $custom_css_el = $("#setting_custom_css");
+
+  $custom_css_el.val(editor.getSession().getValue()); // set it right away
+  editor.on("change", function(e){
+    $custom_css_el.val(editor.getSession().getValue());
+  });
+</script>

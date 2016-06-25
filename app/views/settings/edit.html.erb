@@ -1,0 +1,36 @@
+<h3 class="page-header">
+  Settings – <%= @blog.name %>
+  <span>
+    <%= render partial: 'common/back_button', locals: { path: user_blogs_path(current_user) } %>
+  </span>
+</h3>
+
+<div class="row">
+
+  <div class="col-lg-6">
+    <%= render partial: "form", locals: { resource: @setting } %>
+  </div>
+
+  <div class="col-lg-6">
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Comments</h3>
+      </div>
+        <h4>Find your Disqus Shortname</h4>
+        <p>Read about "What's a shortname?" from the <a href="http://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-">Disqus site</a>.</p>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Custom Style</h3>
+      </div>
+      <h4>Customize your blog</h4>
+      <p>
+        You can enter any valid CSS to customize your blog and override our default styles. Go nuts!
+      </p>
+    </div>
+
+  </div>
+</div>

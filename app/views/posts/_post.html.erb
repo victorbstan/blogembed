@@ -1,0 +1,14 @@
+<% shorten ||= nil %>
+
+<h2 class="blog-title">
+  <%= link_to_unless_current post.title, user_blog_post_path(params[:user_id], @blog.id, post.to_param) %>
+  <% if user_signed_in? && controller_name != 'embeds' %>
+    <span>
+      <%= render(partial: 'common/show_button', locals: { path: user_blog_post_path(current_user, @blog, post.to_param) }) unless current_page? user_blog_post_path(current_user, @blog, post.to_param) %>
+      <%= render(partial: 'common/edit_button', locals: { path: edit_user_blog_post_path(current_user, @blog, post.to_param) }) %>
+      <%= render(partial: 'common/destroy_button', locals: { path: user_blog_post_path(current_user, @blog, post.to_param) }) %>
+    </span>
+  <% end %>
+</h2>
+
+<%= render partial: 'common/post_body', locals: { post: post, shorten: shorten } %>

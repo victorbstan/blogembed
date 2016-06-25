@@ -1,0 +1,11 @@
+<h3 class="page-header">
+  Edit Blog Post – <%= @post.blog.name %>
+  <span>
+    <%= render partial: 'common/back_button', locals: { path: user_blog_posts_path(current_user, @blog) } %>
+    <%= render partial: 'common/show_button', locals: { path: user_blog_post_path(current_user, @blog, @post) } %>
+  </span>
+</h3>
+
+<%= render partial: 'form', locals: { post: @post } %>
+
+

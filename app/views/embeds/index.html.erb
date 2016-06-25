@@ -1,0 +1,23 @@
+<% if @blog %>
+  <div class="row">
+    <div class="col-sm-8">
+      <% if @resources.present? %>
+        <% @resources.each do |post| %>
+          <%= render(partial: 'embeds/post', locals: { post: post, shorten: true }) %>
+          <hr>
+        <% end %>
+      <% else %>
+        <h3>:( A lonely blog... on a lonely journey...</h3>
+      <% end %>
+    </div>
+
+    <% if @resources.any? %>
+      <div class="col-sm-4">
+        <%= render partial: 'posts/archive', locals: { posts: @resources } %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <h3 class="page-header">Sorry...</h3>
+  <p class="alert">This blog is not available.</p>
+<% end %>

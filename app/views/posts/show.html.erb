@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <h3 class="page-header">
+    Preview – <%= @post.blog.name %>
+    <span>
+      <%= render partial: 'common/back_button', locals: { path: user_blog_posts_path(current_user, @blog) } %>
+    </span>
+  </h3>
+<% end %>
+
+<%= render partial: 'post', object: @post %>

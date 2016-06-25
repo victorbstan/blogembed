@@ -1,0 +1,11 @@
+<% if resource.errors.any? %>
+  <div id="error_explanation" class="alert alert-block">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4><%= pluralize(resource.errors.count, "error") %> prohibited this post from being saved:</h4>
+    <ul>
+      <% resource.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
